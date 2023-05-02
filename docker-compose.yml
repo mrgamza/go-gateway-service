@@ -1,0 +1,16 @@
+version: '3'
+services:
+  gateway-service:
+    container_name: gateway-service
+    image: gateway-service
+    restart: always
+
+  gateway-web:
+    container_name: gateway-web
+    image: gateway-web
+    restart: always
+    depends_on:
+      - gateway-service
+    command: ['nginx', '-g', 'daemon off;']
+    ports:
+      - 80:80
